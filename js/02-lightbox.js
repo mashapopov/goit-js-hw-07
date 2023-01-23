@@ -5,7 +5,10 @@ const gallery = document.querySelector("ul.gallery");
 const galleryImgs = (galleryItems) => {
   return galleryItems
     .map(({ preview, original, description }) => {
-      return `<li><a class="gallery__item" href="${original}"><img class="gallery__image" src="${preview}" alt="${description}" /></a></li>`;
+      return `<li><a class="gallery__item" 
+      href="${original}"><img class="gallery__image" 
+      src="${preview}" 
+      alt="${description}" /></a></li>`;
     })
     .join("");
 };
@@ -13,14 +16,9 @@ const galleryImgs = (galleryItems) => {
 const photos = galleryImgs(galleryItems);
 gallery.insertAdjacentHTML("beforeend", photos);
 
-let gallerySimpleLightbox = new SimpleLightbox(".gallery a", {
+const lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
+  captionDelay: 250,
 });
-gallerySimpleLightbox.on("show.simplelightbox", function () {
-  gallerySimpleLightbox.addEventListener("keydown", (evt) => {
-    if (evt.code === "Escape") {
-      close.simplelightbox;
-    }
-  });
-});
+
 
